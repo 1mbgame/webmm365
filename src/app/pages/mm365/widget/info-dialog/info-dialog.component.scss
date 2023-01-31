@@ -1,0 +1,15 @@
+@import '../../../../@theme/styles/themes';
+@include nb-install-component() {
+    .bottom {
+        text-align: center;
+    }
+    .info-body{
+        max-width: 400px;
+        min-width: 300px;
+        min-height: 100px;
+        text-align: center;
+        vertical-align: middle;
+        // padding-left: 30px;
+        // padding-right: 30px;
+    }
+}

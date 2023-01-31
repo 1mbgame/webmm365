@@ -1,0 +1,31 @@
+<nb-card [nbSpinner]="isLoading" windowMode>
+
+
+    <nb-card-body >
+
+        <table class="table-header">
+            <tr>
+                
+                <td class="table-header-td-5">
+                    <button (click)="onRefreshClicked()" nbButton status="info" hero>
+                        Refresh
+                    </button>
+                    <button class="button-add" (click)="onAddClicked()" nbButton status="success" hero>
+                        Add
+                    </button>
+                </td>
+                
+            </tr>
+        </table>
+
+        <ng2-smart-table 
+        [settings]="settings" 
+        [source]="source" 
+        (edit)="onEditClicked($event)" 
+        (delete) = "onDeleteClicked($event)"
+        (deleteConfirm) = "onDeleteConfirmClicked($event)"
+        (editConfirm)="onEditConfirm($event)" 
+        (createConfirm)="onCreateConfirm($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>

@@ -1,0 +1,132 @@
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  ngx-chartjs-pie,
+  ngx-chartjs-bar,
+  ngx-chartjs-line,
+  ngx-chartjs-multiple-xaxis,
+  ngx-chartjs-bar-horizontal,
+  ngx-chartjs-radar {
+    display: block;
+    height: nb-theme(card-height-medium);
+    width: 100%;
+
+    ::ng-deep chart {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+
+
+
+@include nb-install-component() {
+  nb-card {
+      transform: translate3d(0, 0, 0);
+  }
+  nb-card-body {
+      input {
+          width: 100%;
+      }
+      select {
+          width: 100%;
+      }
+  }
+ 
+}
+
+
+@include nb-install-component() {
+  ::ng-deep {
+    ng2-smart-table {
+        .form-control {
+            background-color: nb-theme(input-basic-background-color);
+            border-color: nb-theme(input-basic-border-color);
+            border-style: nb-theme(input-border-style);
+            border-width: nb-theme(input-border-width);
+            color: nb-theme(input-basic-text-color);
+            font-family: nb-theme(input-text-font-family);
+            &::placeholder {
+                color: nb-theme(input-basic-placeholder-text-color);
+                font-family: nb-theme(input-placeholder-text-font-family);
+                text-overflow: ellipsis;
+            }
+            &:focus {
+                outline: none;
+                border-color: nb-theme(input-basic-focus-border-color);
+                background-color: nb-theme(input-basic-background-color);
+            }
+            &:hover {
+                border-color: nb-theme(input-basic-hover-border-color);
+            }
+            &:disabled {
+                background-color: nb-theme(input-basic-disabled-background-color);
+                border-color: nb-theme(input-basic-disabled-border-color);
+                color: nb-theme(input-basic-disabled-text-color);
+                &::placeholder {
+                    color: nb-theme(input-basic-disabled-placeholder-text-color);
+                }
+            }
+            &.input-full-width {
+                width: 100%;
+            }
+        }
+    }
+}
+}
+
+
+
+
+
+
+.nb-card-header{
+    margin-bottom: 0px;
+}
+.table-header{
+    width: 100%;
+}
+.table-header-td-1{
+    width: 70px;
+}
+.table-header-td-2{
+    width: 200px;
+}
+.table-header-td-3{
+    width: auto;
+}
+.refresh-button{
+    float: right;
+}
+.left-label{
+  width: 90px;
+  text-align: left;
+}
+.checkbox{
+  margin-right: 10px;
+}
+
+.dot1 {
+    height: 25px;
+    width: 55px;
+    background-color: #0095ff50;
+    // border-radius: 50%;
+    display: inline-block;
+    border-style: solid;
+    border-width:3px;
+    border-color: #0095ff;
+    vertical-align: middle;
+}
+.dot2 {
+    height: 25px;
+    width: 55px;
+    background-color: #ff3d7150;
+    // border-radius: 50%;
+    display: inline-block;
+    border-style: solid;
+    border-width:3px;
+    border-color: #ff3d71;
+    vertical-align: middle;
+}

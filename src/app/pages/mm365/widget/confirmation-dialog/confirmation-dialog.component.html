@@ -1,0 +1,12 @@
+<nb-card>
+    <nb-card-header>{{ title }}</nb-card-header>
+    <nb-card-body class="info-body">
+        {{ body }}
+    </nb-card-body>
+
+    <nb-card-footer>
+        <button nbButton status="success" (click)="onNoClicked()">{{ buttonNoTitle }}</button>
+        <button class="yes" nbButton status="danger" (click)="onYesClicked()">{{ buttonYesTitle }}</button>
+        <button *ngIf="isButtonMiddleShow == true" class="yes button-middle" nbButton status="warning" (click)="onMiddleClicked()">{{ buttonMiddleTitle }}</button>
+    </nb-card-footer>
+</nb-card>

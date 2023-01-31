@@ -1,0 +1,42 @@
+@import '../../../../@theme/styles/themes';
+@include nb-install-component() {
+    .yes {
+        float: right;
+    }
+}
+.frame{
+    min-width: 630px;
+    height: auto;
+}
+.table_header{
+    width: 100%;
+}
+.radio-button{
+    display: inline;
+}
+.error-message{
+    width: 100%;
+    display: inline-block;
+    color: rgb(232, 82, 82);
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+}
+.table-footer{
+    width: 100%;
+}
+.td-right{
+    text-align: right;
+}
+.text-center{
+    width: 130px;
+    text-align: center;
+}
+.datetime{
+    height: 100%;
+    border-radius: 10px;
+}
+.input-space{
+    margin-top: 3px;
+    margin-bottom: 3px;
+}

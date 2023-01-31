@@ -1,0 +1,41 @@
+<nb-card [nbSpinner]="isLoading" windowMode>
+
+
+    <nb-card-body >
+
+        <table class="table-header">
+
+            <tr>
+                <td class="table-header-td-1">
+                    <nb-select [selected]="currentAccountId" (selectedChange)="onAccountChanged($event)" status="primary">
+                        <nb-option *ngFor="let account of accountList" [value]="account.accountId">{{ account.name }}</nb-option>
+                    </nb-select>
+                </td>
+                <td class="table-header-td-2">Income:<br><span id="totalIncome"></span></td>
+                <td class="table-header-td-3">Expense:<br><span id="totalExpense"></span></td>
+                <td class="table-header-td-4">
+                    <input id="datePickerRange" nbInput placeholder="Range Picker" [nbDatepicker]="rangepicker">
+                    <nb-rangepicker  #rangepicker ></nb-rangepicker>
+                </td>
+                <td class="table-header-td-5">
+                    <button nbButton status="info" hero (click)="onSearchClicked()">
+                        Search
+                    </button>
+                    <button class="button-add" (click)="onAddClicked()" nbButton status="success" hero>
+                        Add
+                    </button>
+                </td>
+                
+            </tr>
+        </table>
+
+        <ng2-smart-table 
+        [settings]="settings" 
+        [source]="source" 
+        (edit)="onEditClicked($event)" 
+        (delete) = "onDeleteClicked($event)"
+        (editConfirm)="onEditConfirm($event)" 
+        (createConfirm)="onCreateConfirm($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>

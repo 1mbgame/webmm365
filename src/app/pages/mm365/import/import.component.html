@@ -1,0 +1,57 @@
+<nb-card [nbSpinner]="isLoading">
+    <nb-card-header>
+        <table class="title-table">
+            <tr>
+                <td>Import</td>
+                <td>
+                    <button class="button-export" nbButton status="info" hero (click)="onImportClicked()">
+                        Import
+                    </button>
+                    <button class="button-export" nbButton status="warning" hero (click)="onDownloadTemplateClicked()">
+                        Download Template
+                    </button>
+                </td>
+
+            </tr>
+        </table>
+    </nb-card-header>
+    <nb-card-body>
+        <table class="table_header">
+            <tr>
+                <td>
+                    <div id="dropContainer" class="drop-input">
+                        <table class="my-table">
+                            <tr>
+                                <td>
+                                    <strong>Choose a file</strong><span> or drag it here</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <input type="file" id="fileInput" class="file-inpit" />
+                </td>
+            </tr>
+        </table>
+
+    </nb-card-body>
+</nb-card>
+<nb-card *ngIf="isResultDisplay">
+    
+    <nb-card-body>
+        <div>
+            File Name : <strong>{{ filename }}</strong><br />
+            Total Record imported = <strong>{{ totalRecordImported }}</strong><br />
+            Total Record rejected = <strong>{{ totalRecordRejected }}</strong><br />
+            <br />
+        </div>
+        <div>
+            <table>
+                <tr *ngFor="let item of errorMessageList">
+                    <td>
+                        {{ item }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </nb-card-body>
+</nb-card>

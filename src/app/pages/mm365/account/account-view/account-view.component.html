@@ -1,0 +1,67 @@
+<nb-card class="frame">
+    <nb-card-header>
+        <table class="table_header">
+            <tr>
+                <td >
+                    {{ actionTitle }}
+                </td>
+                
+                <td class="td-right">
+                    
+                </td>
+            </tr>
+        </table>
+
+    </nb-card-header>
+    <nb-card-body>
+        <table class="table_header">
+            <tr>
+                <td>Name :</td>
+                <td>
+                    <input class="input-space" id="accountName" type="text" nbInput fullWidth />
+                </td>
+            </tr>
+            <tr>
+                <td>Opening Balance :</td>
+                <td>
+                    <input class="input-space" id="openingBalance" type="number" nbInput fullWidth />
+                </td>
+            </tr>
+            <tr>
+                <td>Currency :</td>
+                <td>
+                    <nb-select class="input-space"  fullWidth [selected]="currencyCode" (selectedChange)="onCurrencyChanged($event)" >
+                        <nb-option *ngFor="let currency of currencyList" [value]="currency.currencyCode">{{ currency.currencyCode }}</nb-option>
+                    </nb-select>
+                </td>
+            </tr>
+            <tr>
+                <td>Note :</td>
+                <td>
+                    <textarea class="input-space" id="remark" rows="3" nbInput fullWidth   placeholder="-"></textarea>
+                    <!-- <input id="remark" type="text" nbInput fullWidth placeholder="-"> -->
+                </td>
+            </tr>
+        </table>
+    </nb-card-body>
+
+    <nb-card-footer>
+        <table class="table-footer">
+            <tr>
+                <td class="error-message">
+                    <span id="errorMessage">
+
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button nbButton status="danger" (click)="onNoClicked()">Cancel</button>
+                    <button class="yes" nbButton status="success" (click)="onYesClicked()">Save</button>
+
+                </td>
+            </tr>
+        </table>
+
+    </nb-card-footer>
+</nb-card>

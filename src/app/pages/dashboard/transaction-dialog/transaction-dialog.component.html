@@ -1,0 +1,129 @@
+<nb-card class="frame">
+    <nb-card-header>
+        <table class="table_header">
+            <tr>
+                <td *ngIf="isEditMode == true">
+                    {{ transactionTypeDisplay }}
+                </td>
+                <td *ngIf="isEditMode == false">
+                    <nb-radio-group [(value)]="transactionType">
+                        <nb-radio class="radio-button" [value]="'Income'" (click)="onTypeIncomeClicked('Income')">
+                            Income
+                        </nb-radio>
+                        <nb-radio class="radio-button" [value]="'Expense'" (click)="onTypeExpenseClicked('Expense')">
+                            Expense
+                        </nb-radio>
+                        <nb-radio class="radio-button" [value]="'Transfer'" (click)="onTypeTransferClicked('Transfer')">
+                            Transfer
+                        </nb-radio>
+                    </nb-radio-group>
+                </td>
+                <td class="td-right">
+                    <input id="transactionDate" class="text-center" nbInput placeholder="-" [nbDatepicker]="formpicker">
+                    <nb-datepicker #formpicker></nb-datepicker>
+                    <input id="transactionTime" type="time" nbInput >
+                   
+                    <!-- <input class="text-center" id="transactionDateTime" type="datetime-local" nbInput > -->
+
+                    
+                    <!-- <input id="transactionDate" class="text-center" nbInput placeholder="-" [nbDatepicker]="formpicker">
+                    <nb-datepicker #formpicker></nb-datepicker> -->
+                    <!-- <input id="transactionDate" nbInput placeholder="Pick Date" [nbDatepicker]="dateTimePicker">
+                    <nb-date-timepicker withSeconds #dateTimePicker></nb-date-timepicker> -->
+                    <!-- <input [nbTimepicker]="timepicker">
+                    <nb-timepicker #timepicker></nb-timepicker> -->
+                </td>
+            </tr>
+        </table>
+
+    </nb-card-header>
+    <nb-card-body>
+        <table class="table_header">
+            <!-- <tr>
+                <td>Date :</td>
+                <td>
+                    
+                </td>
+            </tr> -->
+            <tr id="accountView">
+                <td>Account :</td>
+                <td *ngIf="isEditMode == true">
+                    <input id="accountName" type="text" nbInput fullWidth  disabled/>
+                </td>
+                <td *ngIf="isEditMode == false">
+                    <nb-select fullWidth [selected]="currentAccountId" (selectedChange)="changeAccount($event)">
+                        <nb-option *ngFor="let account of accountList" [value]="account.accountId">{{ account.name }}
+                        </nb-option>
+                    </nb-select>
+                </td>
+            </tr>
+            <tr id="fromAccountView">
+                <td>From Account :</td>
+                <td  *ngIf="isEditMode == false">
+                    <nb-select fullWidth [selected]="accountIdFrom" id="accountIdFrom" (selectedChange)="fromAccount($event)">
+                        <nb-option *ngFor="let account of accountList" [value]="account.accountId">{{ account.name }}
+                        </nb-option>
+                    </nb-select>
+                </td>
+                <td *ngIf="isEditMode == true">
+                    <input id="accountNameFrom" type="text" nbInput fullWidth  disabled/>
+                </td>
+            </tr>
+            <tr id="toAccountView">
+                <td>To Account :</td>
+                <td *ngIf="isEditMode == false">
+                    <nb-select fullWidth [selected]="accountIdTo" id="accountIdTo" (selectedChange)="toAccount($event)">
+                        <nb-option *ngFor="let account of accountList" [value]="account.accountId">{{ account.name }}
+                        </nb-option>
+                    </nb-select>
+                </td>
+                <td *ngIf="isEditMode == true" >
+                    <input id="accountNameTo" type="text" nbInput fullWidth  disabled/>
+                </td>
+            </tr>
+            <tr id="categoryView">
+                <td>Category :</td>
+                <td>
+                    <nb-select   fullWidth [(selected)]="currentCategoryId" (selectedChange)="changeCategory($event)">
+                        <nb-option *ngFor="let category of categoryList" [value]="category.categoryId">
+                            <span [ngStyle]="{ 'background-color': category.color }" title="{{ category.color }}" class="dot"></span>&nbsp;{{ category.name }}
+                        </nb-option>
+                    </nb-select>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>Amount :</td>
+                <td><input id="amount" type="number" nbInput fullWidth placeholder="0.00" autofocus></td>
+            </tr>
+            <tr>
+                <td>Remark :</td>
+                <td>
+                    <textarea id="remark" rows="3" nbInput fullWidth   placeholder="-"></textarea>
+                    <!-- <input id="remark" type="text" nbInput fullWidth placeholder="-"> -->
+                </td>
+            </tr>
+        </table>
+    </nb-card-body>
+
+    <nb-card-footer>
+        <table class="table-footer">
+            <tr>
+                <td class="error-message">
+                    <span id="errorMessage">
+
+                    </span>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <button nbButton status="danger" (click)="onNoClicked()">Cancel</button>
+                    <button class="yes" nbButton status="success" (click)="onYesClicked()">Save</button>
+
+                </td>
+            </tr>
+        </table>
+
+    </nb-card-footer>
+</nb-card>

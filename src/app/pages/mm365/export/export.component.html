@@ -1,0 +1,172 @@
+<nb-card [nbSpinner]="isLoading">
+    <nb-card-header>
+        <table class="title-table">
+            <tr>
+                <td *ngIf="isExportDateFormatView == false">Export</td>
+                <td *ngIf="isExportDateFormatView == true">Change Export Date Format</td>
+                <td *ngIf="isExportDateFormatView == false">
+                    <button class="button-export" nbButton status="info" hero (click)="onExportClicked()">
+                        Export
+                    </button>
+                    <button class="button-export" nbButton status="warning" hero (click)="onExportDateFormatClicked()">
+                        Change Export Date Format
+                    </button>
+                </td>
+                <td *ngIf="isExportDateFormatView == true">
+                    
+                    <button class="button-export" nbButton status="success" hero (click)="onExportDateFormatSaveClicked()">
+                        Save
+                    </button>
+                    <button class="button-export" nbButton status="danger" hero (click)="onExportDateFormatCancelClicked()">
+                        Cancel
+                    </button>
+                    <button class="button-export" nbButton status="info" hero (click)="onDefaultClicked()">
+                        Default
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </nb-card-header>
+    <nb-card-body *ngIf="isExportDateFormatView == false">
+        <table class="table_header">
+            <tr>
+                <td class="left-label">Account :</td>
+                <td>
+                    <nb-checkbox class="checkbox" *ngFor="let account of accountList"
+                        [checked]="selectedAccountIdList.indexOf(account.accountId) >= 0"
+                        (checkedChange)="onAccountCheckedChange($event,account)">
+                        {{ account.name }}
+                    </nb-checkbox>
+                </td>
+            </tr>
+            <tr>
+                <td>Start Date :</td>
+                <td>
+                    <input 
+                    #viewStartDate
+                    class="text-center" 
+                    nbInput 
+                    placeholder="-"
+                    [nbDatepicker]="formStartDatePicker">
+                    <nb-datepicker #formStartDatePicker></nb-datepicker>
+                </td>
+            </tr>
+            <tr>
+                <td>End Date :</td>
+                <td>
+                    <input #viewEndDate class="text-center" nbInput placeholder="-" [nbDatepicker]="formEndDatePicker">
+                    <nb-datepicker #formEndDatePicker></nb-datepicker>
+                </td>
+            </tr>
+            <tr class="row-height">
+                <td>Type :</td>
+                <td>
+                    <nb-radio-group [(value)]="transactionType">
+                        <nb-radio class="radio-button" [value]="'All'" (click)="onTypeAllClicked('All')">
+                            All
+                        </nb-radio>
+                        <nb-radio class="radio-button" [value]="'Income'" (click)="onTypeIncomeClicked('Income')">
+                            Income
+                        </nb-radio>
+                        <nb-radio class="radio-button" [value]="'Expense'" (click)="onTypeExpenseClicked('Expense')">
+                            Expense
+                        </nb-radio>
+                        
+                    </nb-radio-group>
+                </td>
+
+            </tr>
+
+
+        </table>
+
+    </nb-card-body>
+
+    <nb-card-body *ngIf="isExportDateFormatView == true">
+        <table class="table_header">
+            <tr>
+                <td class="left-label">Date Format :</td>
+                <td class="middle-label">
+                    <input #inputDateFormat class="middle-input"
+                    (input)="onInputDateFormatChanged($event)" 
+                    placeholder="Date Format" type="text" nbInput />
+                </td>
+                <td>
+                    <span class="preview">{{ dateFormatPreview }}</span>
+                </td>
+            </tr>
+        </table>
+        <div>
+            Example :
+        </div>
+        <table class="example-table example-label">
+            <tr>
+                <td>yyyy-MM-dd HH:mm:ss</td>
+                <td>2001-01-28 08:26:23</td>
+                <td><button nbButton status="warning" (click)="onButtonTakeClicked('yyyy-MM-dd HH:mm:ss')" outline >Fill</button></td>
+            </tr>
+            <tr>
+                <td>yyyy-MM-dd HH:mm a</td>
+                <td>2001-01-28 08:26 AM</td>
+                <td><button nbButton status="warning" (click)="onButtonTakeClicked('yyyy-MM-dd HH:mm a')" outline >Fill</button></td>
+            </tr>
+            <tr>
+                <td>yyyy.MM.dd G 'at' HH:mm:ss z</td>
+                <td>2001.01.28 AD at 08:23:00 GMT+8</td>
+                <td><button nbButton status="warning" (click)="onButtonTakeClicked('yyyy.MM.dd G \'at\' HH:mm:ss z')" outline >Fill</button></td>
+            </tr>
+            <tr>
+                <td>yyyy.MM.dd G 'at' HH:mm:ss z</td>
+                <td>2021.01.28 AD at 08:23:00 GMT+8</td>
+                <td><button nbButton status="warning" (click)="onButtonTakeClicked('yyyy.MM.dd G \'at\' HH:mm:ss z')" outline >Fill</button></td>
+            </tr>
+            <tr>
+                <td>EEE, MMM d, ''yy</td>
+                <td>Wed, Jul 3, '01</td>
+                <td><button nbButton status="warning" (click)="onButtonTakeClicked('EEE, MMM d, \'\'yy')" outline >Fill</button></td>
+            </tr>
+            <tr>
+                <td>h:mm a</td>
+                <td>12:08 PM</td>
+                <td><button nbButton status="warning" (click)="onButtonTakeClicked('h:mm a')" outline >Fill</button></td>
+            </tr>
+            <tr>
+                <td>hh 'o''clock' a, zzzz</td>
+                <td>08 o'clock AM, GMT+08:00</td>
+                <td><button nbButton status="warning" (click)="onButtonTakeClicked('hh \'o\'\'clock\' a, zzzz')" outline >Fill</button></td>
+            </tr>
+            <tr>
+                <td>h:mm a, z</td>
+                <td>8:30 AM, GMT+8</td>
+                <td><button nbButton status="warning" (click)="onButtonTakeClicked('h:mm a, z')" outline >Fill</button></td>
+            </tr>
+            <tr>
+                <td>yyyyy.MMMMM.dd GGG hh:mm aaa</td>
+                <td>02001.July.03 AD 12:08 PM</td>
+                <td><button nbButton status="warning" (click)="onButtonTakeClicked('yyyyy.MMMMM.dd GGG hh:mm aaa')" outline >Fill</button></td>
+            </tr>
+            <tr>
+                <td>EEE, d MMM yyyy HH:mm:ss Z</td>
+                <td>Wed, 3 Jul 2001 12:08:56 -0800</td>
+                <td><button nbButton status="warning" (click)="onButtonTakeClicked('EEE, d MMM yyyy HH:mm:ss Z')" outline >Fill</button></td>
+            </tr>
+            <tr>
+                <td>yyMMddHHmmssZ</td>
+                <td>010803120856-0800</td>
+                <td><button nbButton status="warning" (click)="onButtonTakeClicked('yyMMddHHmmssZ')" outline >Fill</button></td>
+            </tr>
+            <tr>
+                <td>yyyy-MM-dd'T'HH:mm:ss.SSSZ</td>
+                <td>2001-08-03T12:08:56.235-0101</td>
+                <td><button nbButton status="warning" (click)="onButtonTakeClicked('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ')" outline >Fill</button></td>
+            </tr>
+            <tr>
+                <td>yyyy-MM-dd'T'HH:mm:ss.SSS</td>
+                <td>2021-01-28T08:31:00.118</td>
+                <td><button nbButton status="warning" (click)="onButtonTakeClicked('yyyy-MM-dd\'T\'HH:mm:ss.SSS')" outline >Fill</button></td>
+            </tr>
+            
+        </table>
+
+    </nb-card-body>
+</nb-card>

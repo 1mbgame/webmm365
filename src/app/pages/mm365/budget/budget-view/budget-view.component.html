@@ -1,0 +1,102 @@
+<nb-card class="frame">
+    <nb-card-header>
+        <table class="table_header">
+            <tr>
+                <td class="title-name">
+                    {{ actionTitle }}
+                </td>
+                <td>
+                    <input #inputName placeholder="Name" type="text" nbInput />
+                </td>
+                <td class="td-right">
+                    <input #datePickerRange fullWidth nbInput placeholder="Range Picker" [nbDatepicker]="rangepicker">
+                    <nb-rangepicker  #rangepicker ></nb-rangepicker>
+                </td>
+            </tr>
+        </table>
+
+    </nb-card-header>
+    <nb-card-body>
+        <table class="table_header">
+            
+            <tr>
+                <td>Amount :</td>
+                <td>
+                    <input #inputAmount placeholder="0" type="number" nbInput />
+                </td>
+            </tr>
+            <tr>
+                <td>Account :</td>
+                <td class="data-selector">
+                    <nb-checkbox class="checkbox" *ngFor="let account of accountList"
+                        [checked]="selectedAccountIdList.indexOf(account.accountId) >= 0"
+                        (checkedChange)="onAccountCheckedChange($event,account)">
+                        {{ account.name }}
+                    </nb-checkbox>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td >Category(Income) :</td>
+                <td class="category-selection">
+                    <nb-checkbox class="checkbox" *ngFor="let category of categoryIncomeList"
+                        [checked]="selectedCategoryIdList.indexOf(category.categoryId) >= 0"
+                        (checkedChange)="onCategoryCheckedChange($event,category)">
+                        {{ category.name }}
+                    </nb-checkbox>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="category-expense">
+                    Category(Expense) :<br />
+                    <button class="button-all" nbButton [size]="'tiny'" (click)="onCategoryAllClicked()">All</button>
+                </td>
+                <td >
+                    <ul class="category-single-box" >
+                        <ol class="category-selection" *ngFor="let category of categoryExpenseList">
+                        <nb-checkbox class="checkbox"
+                            [checked]="selectedCategoryIdList.indexOf(category.categoryId) >= 0"
+                            (checkedChange)="onCategoryCheckedChange($event,category)">
+                            {{ category.name }}
+                        </nb-checkbox>
+                    </ol>
+                    </ul>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>Remark :</td>
+                <td>
+                    <textarea #inputRemark rows="1" nbInput fullWidth   placeholder="-"></textarea>
+                </td>
+            </tr>
+
+
+        </table>
+    </nb-card-body>
+
+    <nb-card-footer>
+        <table class="table-footer">
+            <tr>
+                <td class="error-message">
+                    <span #errorMessageView>
+
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button nbButton status="danger" (click)="onNoClicked()">Cancel</button>
+                    <button class="yes" nbButton status="success" (click)="onYesClicked()">Save</button>
+
+                </td>
+            </tr>
+        </table>
+
+    </nb-card-footer>
+</nb-card>

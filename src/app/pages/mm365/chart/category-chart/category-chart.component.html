@@ -1,0 +1,101 @@
+<span *ngIf="isShowTransactionTable == false">
+    <nb-card [nbSpinner]="isLoading" >
+        <nb-card-body>
+
+            <table class="table-header">
+
+                <tr>
+                    <td  class="text-align-left">Type :</td>
+                    <td class="table-header-td-3">
+                        <nb-radio-group [(value)]="type">
+                            <nb-radio class="radio-button" [value]="'Income'" (click)="onTypeIncomeClicked('Income')">
+                                Income
+                            </nb-radio>
+                            <nb-radio class="radio-button" [value]="'Expense'"
+                                (click)="onTypeExpenseClicked('Expense')">
+                                Expense
+                            </nb-radio>
+                        </nb-radio-group>
+                    </td>
+                    <td class="table-header-td-4">
+                        <input #inputDatePickerRange fullWidth nbInput placeholder="Range Picker"
+                            [nbDatepicker]="rangepicker">
+                        <nb-rangepicker #rangepicker></nb-rangepicker>
+                    </td>
+                    <td class="table-header-td-5">
+                        <button nbButton status="info" hero (click)="onRefreshClicked()">
+                            Refresh
+                        </button>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="4">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="text-align-left">Account :</td>
+                    <td class="table-header-td-2" colspan="3">
+                        <nb-checkbox class="checkbox" *ngFor="let account of accountList"
+                            [checked]="selectedAccountIdList.indexOf(account.accountId) >= 0"
+                            (checkedChange)="onAccountCheckedChange($event,account)">
+                            {{ account.name }}
+                        </nb-checkbox>
+                    </td>
+                </tr>
+            </table>
+
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+
+        <nb-card-body>
+            <ngx-category-pie
+                [colorList]="categoryColorTop5List"
+                [nameList]="categoryNameTop5List"
+                [dataList]="chartRowDataTop5List"
+            ></ngx-category-pie>
+            <div>
+                Total Amount : <span #viewTotalAmount></span>
+                <br>
+            </div>
+
+        </nb-card-body>
+
+    </nb-card>
+    <nb-card [nbSpinner]="isTableLoading" *ngIf="isShowTransactionTable == false">
+        <nb-card-body>
+            <ngx-chart-table
+                [chartRowDataList] = "chartRowDataList"
+            ></ngx-chart-table>
+        </nb-card-body>
+    </nb-card>
+</span>
+<span *ngIf="isShowTransactionTable == true">
+    <!-- <nb-card>
+        <nb-body>
+            
+        </nb-body>
+    </nb-card> -->
+    <!-- <nb-card>
+        <nb-body>
+            <ngx-echarts-bar
+                
+            ></ngx-echarts-bar>
+        </nb-body>
+    </nb-card> -->
+    <nb-card>
+        <nb-card-body>
+            <table class="table-header-transaction">
+                <tr class="transaction-table-column-tr">
+                    <td class="transaction-table-column-2">
+                        <button nbButton class="transaction-button" status="info" hero (click)="onBackClicked()">
+                            Back
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            <ngx-transaction-table [transactionList]="transactionList"></ngx-transaction-table>
+        </nb-card-body>
+    </nb-card>
+</span>

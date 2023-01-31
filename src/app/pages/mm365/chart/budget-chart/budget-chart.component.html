@@ -1,0 +1,47 @@
+<span>
+    <nb-card [nbSpinner]="isLoading" >
+        <nb-card-body>
+            <table class="table-header">
+                <tr>
+                    <td class="table-header-td-1">Budget :</td>
+                    <td class="table-header-td-2">
+                        <nb-select class="selecte-option" [selected]="selectedBudgetId" (selectedChange)="onBudgetChanged($event)" status="primary">
+                            <nb-option *ngFor="let budget of budgetList" [value]="budget.budgetId">{{ budget.name }}</nb-option>
+                        </nb-select>
+                    </td>
+                    <td class="table-header-td-4">
+                        <button nbButton status="info" hero (click)="onEditClicked()">
+                            Edit
+                        </button>
+                        <button class="button-refresh" nbButton status="info" hero (click)="onRefreshClicked()">
+                            Refresh
+                        </button>
+                    </td>
+
+                </tr>
+            </table>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+        <nb-card-body>
+            <ngx-category-pie
+                [colorList]="categoryColorTop5List"
+                [nameList]="categoryNameTop5List"
+                [dataList]="chartRowDataTop5List"
+            ></ngx-category-pie>
+            <div>
+                Budget Amount : <span #viewTotalAmount>0.00</span>
+                <br /><br />
+                Amount Left  : <span #viewAmountLeft>0.00</span>
+                <br /><br />
+                <nb-progress-bar [value]="percentage" status="primary" [displayValue]="true"></nb-progress-bar>
+            </div>
+        </nb-card-body>
+    </nb-card>
+    <nb-card>
+        <nb-card-body>
+            <ngx-transaction-table [transactionList]="transactionList"></ngx-transaction-table>
+        </nb-card-body>
+    </nb-card>
+</span>

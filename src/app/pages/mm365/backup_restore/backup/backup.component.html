@@ -1,0 +1,17 @@
+<nb-card [nbSpinner]="isLoading">
+    <nb-card-header>
+        <table class="title-table">
+            <tr align="center">
+                <td>
+                    All data will be stored in backup file
+                    <br />
+                    <br />
+                    <button nbButton status="info" hero (click)="onBackupClicked()">
+                        Download Backup
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </nb-card-header>
+    
+</nb-card>

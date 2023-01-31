@@ -1,0 +1,3 @@
+<nb-select [selected]="selectedCurrencyCode" (selectedChange)="onCurrencyChanged($event)" status="primary">
+    <nb-option *ngFor="let currency of currencyList" [value]="currency.currencyCode">{{ currency.currencyCode }}</nb-option>
+</nb-select>

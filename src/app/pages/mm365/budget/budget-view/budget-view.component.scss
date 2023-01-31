@@ -1,0 +1,88 @@
+@import '../../../../@theme/styles/themes';
+@include nb-install-component() {
+    .yes {
+        float: right;
+    }
+}
+.frame{
+    width: 900px;
+    
+    height: auto;
+}
+.table_header{
+    width: 100%;
+}
+.radio-button{
+    display: inline;
+}
+.error-message{
+    width: 100%;
+    display: inline-block;
+    color: rgb(232, 82, 82);
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+}
+.table-footer{
+    width: 100%;
+}
+.td-right{
+    text-align: right;
+    width: 250px;
+}
+.text-center{
+    width: 130px;
+    text-align: center;
+}
+.datetime{
+    height: 100%;
+    border-radius: 10px;
+}
+
+.color-content{
+    height: 60px;
+}
+.rectangle {
+    height: 40px;
+    width: 100px;
+    border-radius: 4px;
+    margin: 5px;
+}
+.color-selection-pane{
+    max-width: 200px;
+}
+.row-height{
+    vertical-align: middle;
+    height: 50px;
+}
+.data-selector{
+    padding-top: 10px;
+}
+.checkbox{
+    margin-right: 10px;
+}
+.category-title{
+    max-width: 180px;
+}
+.category-single-box{
+    // columns: 3;
+    padding-inline-start: 0px;
+    
+}
+.category-expense{
+    width: 180px;
+}
+.category-single-box ol{
+    float:left; width:32%;
+}
+.category-selection{
+    text-align: left;
+    padding-inline-start: 0px;
+}
+.title-name{
+    width: 180px;
+    margin-right: 10px;
+}
+.button-all{
+    margin-top: 8px;
+}

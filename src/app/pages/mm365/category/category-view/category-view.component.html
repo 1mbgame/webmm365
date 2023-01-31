@@ -1,0 +1,84 @@
+<nb-card class="frame">
+    <nb-card-header>
+        <table class="table_header">
+            <tr>
+                <td >
+                    {{ actionTitle }}
+                </td>
+                
+                <td class="td-right">
+                    
+                </td>
+            </tr>
+        </table>
+
+    </nb-card-header>
+    <nb-card-body>
+        <table class="table_header">
+            <tr>
+                <td>Name :</td>
+                <td>
+                    <input #inputName type="text" nbInput fullWidth />
+                </td>
+            </tr>
+            <tr class="row-height">
+                <td>Type :</td>
+                <td *ngIf="isEditMode == false">
+                    <nb-radio-group [(value)]="type">
+                        <nb-radio class="radio-button" [value]="'Income'" (click)="onTypeIncomeClicked('Income')">
+                            Income
+                        </nb-radio>
+                        <nb-radio class="radio-button" [value]="'Expense'" (click)="onTypeExpenseClicked('Expense')">
+                            Expense
+                        </nb-radio>
+                    </nb-radio-group>
+                </td>
+                <td *ngIf="isEditMode == true">
+                    {{ type }}
+                </td>
+            </tr>
+            <tr>
+                <td>Color :</td>
+                <td class="color-selection-pane">
+                    <!-- <nb-select fullWidth [selected]="color" (selectedChange)="onColorChanged($event)" >
+                        <nb-option class="color-content" *ngFor="let color of colorList" [value]="color">
+                            {{ color }} <span [ngStyle]="{'background-color': color}" class="rectangle"></span>
+                        </nb-option>
+                    </nb-select> -->
+
+                    <button 
+                        *ngFor="let colorText of colorList; let i=index" 
+                        [ngStyle]="{'background-color': colorText}" 
+                        class="rectangle"
+                        (click)="onColorChanged(colorText)">
+                        &nbsp;<span *ngIf="colorText == color">
+                            &#x2713;
+                        </span>&nbsp;
+                    </button>
+                        
+                </td>
+            </tr>
+            
+        </table>
+    </nb-card-body>
+
+    <nb-card-footer>
+        <table class="table-footer">
+            <tr>
+                <td class="error-message">
+                    <span #errorMessageView>
+
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button nbButton status="danger" (click)="onNoClicked()">Cancel</button>
+                    <button class="yes" nbButton status="success" (click)="onYesClicked()">Save</button>
+
+                </td>
+            </tr>
+        </table>
+
+    </nb-card-footer>
+</nb-card>

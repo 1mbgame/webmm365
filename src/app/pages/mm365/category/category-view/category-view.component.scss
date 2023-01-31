@@ -1,0 +1,56 @@
+@import '../../../../@theme/styles/themes';
+@include nb-install-component() {
+    .yes {
+        float: right;
+    }
+}
+.frame{
+    min-width: 630px;
+    max-width: 800px;
+    height: auto;
+}
+.table_header{
+    width: 100%;
+}
+.radio-button{
+    display: inline;
+}
+.error-message{
+    width: 100%;
+    display: inline-block;
+    color: rgb(232, 82, 82);
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+}
+.table-footer{
+    width: 100%;
+}
+.td-right{
+    text-align: right;
+}
+.text-center{
+    width: 130px;
+    text-align: center;
+}
+.datetime{
+    height: 100%;
+    border-radius: 10px;
+}
+
+.color-content{
+    height: 60px;
+}
+.rectangle {
+    height: 40px;
+    width: 100px;
+    border-radius: 4px;
+    margin: 5px;
+}
+.color-selection-pane{
+    max-width: 200px;
+}
+.row-height{
+    vertical-align: middle;
+    height: 50px;
+}
